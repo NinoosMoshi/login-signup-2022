@@ -1,0 +1,79 @@
+<!-- <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="emailVal">
+  <span *ngIf="email?.errors?.required || email?.errors?.noSpace" class="alert alert-danger" role="alert">
+    Email Is Required
+  </span>
+  <span *ngIf="email?.errors?.pattern" class="alert alert-danger" role="alert">
+    Invalid Email
+  </span>
+</div>
+
+<div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="passwordVal">
+  <span *ngIf="password?.errors?.required || password?.errors?.noSpace" class="alert alert-danger" role="alert">
+    Password Is Required
+  </span>
+</div> -->
+
+
+
+
+<div class="container">
+  <div class="d-flex justify-content-center h-100 myheight">
+    <div class="card">
+      <div class="card-header">
+        <h3>Sign In</h3>
+        <div class="d-flex justify-content-end social_icon">
+        </div>
+      </div>
+      <div class="card-body">
+
+        <form (ngSubmit)="login()" [formGroup]="formParentGroup">
+          <div formGroupName="user">
+
+              <div class="input-group form-group input-field">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input formControlName="email" type="text" class="form-control" placeholder="email">
+              </div>
+
+              <div class="input-group form-group input-field">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input formControlName="password" type="password" class="form-control" placeholder="password">
+              </div>
+
+              <div class="form-group">
+                <button type="submit" class="btn float-right login_btn">Login</button>
+              </div>
+
+              <hr style="color: #fff;">
+
+              <div class="d-flex justify-content-center" style="font-size: 20px;">
+                <span style="color: #fff;">OR</span>
+              </div>
+
+              <div class="form-group">
+                <button  type="submit" class="btn float-right google_btn"><i class="fab fa-google"></i>Login via Google</button>
+              </div>
+
+              <div class="form-group">
+                <button  type="submit" class="btn float-right facebook_btn"><i class="fab fa-facebook-f"></i>Login via Facebook</button>
+              </div>
+
+        </div>
+
+        </form>
+
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+          Don't have an account?<a routerLink="/signup">Sign Up</a>
+        </div>
+        <div class="d-flex justify-content-center links">
+          <a routerLink="/reset">Forgot your password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

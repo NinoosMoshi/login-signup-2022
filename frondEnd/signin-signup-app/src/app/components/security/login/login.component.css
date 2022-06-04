@@ -1,0 +1,144 @@
+
+
+.card{
+  height: 515px;
+  width: 400px;
+  background-color: rgba(0,0,0,0.5) !important;
+  margin-bottom: 140px;
+}
+
+.input-field{
+  margin-bottom: 20px;
+}
+
+.input-field span{
+  padding: 11px;
+}
+
+.social_icon span{
+  font-size: 60px;
+  margin-left: 10px;
+  color: #FFC312;
+}
+
+.social_icon span:hover{
+  color: white;
+  cursor: pointer;
+}
+
+.card-header h3{
+  color: white;
+}
+
+.social_icon{
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span{
+  width: 50px;
+  background-color: #FFC312;
+  color: black;
+  border:0 !important;
+}
+
+input:focus{
+  outline: 0 0 0 0  !important;
+  box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+  color: white;
+}
+
+.remember input
+{
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+
+.login_btn{
+  color: #fff;
+  background-color: #FFC312;
+  width: 100%;
+}
+
+.google_btn{
+  color: #fff;
+  background-color: #CF4332;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.google_btn i{
+  margin-right: 10px;
+}
+
+.facebook_btn{
+  color: #fff;
+  background-color: #3C66C4;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.facebook_btn i{
+  margin-right: 10px;
+}
+
+.login_btn:hover{
+  color: #fff;
+  background-color: #FF6A00;
+}
+
+.links{
+  color: white;
+  cursor: pointer;
+}
+
+.links a{
+  margin-left: 4px;
+  color: #000;
+}
+.myheight
+{
+  margin-top: 90px;
+}
+
+
+/* .alert
+{
+  position: absolute;
+  left: 360px;
+  width: 200px;
+} */
+
+
+
+
+.emailVal span
+{
+  position: absolute;
+  left: 53px;
+  width: 315px;
+  margin-top: -79px;
+  height: 50px;
+}
+
+.passwordVal span
+{
+  position: absolute;
+  left: 53px;
+  width: 315px;
+  margin-top: -20px;
+  height: 50px;
+}
+
+
+.submitVal{
+  margin-top: 25px;
+}

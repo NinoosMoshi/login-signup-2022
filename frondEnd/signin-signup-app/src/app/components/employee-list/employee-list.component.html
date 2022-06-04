@@ -1,0 +1,41 @@
+
+<div class="container mt-5">
+
+
+
+<div class="card shadow">
+  <div class="card-body">
+
+    <table class="table table-borderless table-responsive card-1 p-4">
+      <thead>
+          <tr class="border-bottom">
+              <th> <span class="ml-2">Id</span> </th>
+              <th> <span class="ml-2">First Name</span> </th>
+              <th> <span class="ml-2">Last Name</span> </th>
+              <th> <span class="ml-2">Email</span> </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="border-bottom" *ngFor="let temp of employess">
+            <td>
+              <div class="p-2"> <span class="font-weight-bold">{{temp.id}}</span> </div>
+            </td>
+              <td>
+                  <div class="p-2"> <span class="font-weight-bold">{{temp.firstName}}</span> </div>
+              </td>
+
+              <td>
+                  <div class="p-2"> <span class="font-weight-bold">{{temp.lastName}}</span>  </div>
+              </td>
+              <td>
+                <div class="p-2"> <span class="font-weight-bold">{{temp.email}}</span></div>
+            </td>
+
+          </tr>
+      </tbody>
+  </table>
+  </div>
+</div>
+</div>
+
+
