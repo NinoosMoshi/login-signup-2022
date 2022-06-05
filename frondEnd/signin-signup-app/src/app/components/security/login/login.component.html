@@ -1,17 +1,22 @@
-<!-- <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="emailVal">
-  <span *ngIf="email?.errors?.required || email?.errors?.noSpace" class="alert alert-danger" role="alert">
-    Email Is Required
+
+<!-- start validate email -->
+<div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="emailVal">
+  <span *ngIf="email?.errors?.['required'] || email?.errors?.['noSpace']" class="alert alert-danger" role="alert">
+      Email Is Required
   </span>
-  <span *ngIf="email?.errors?.pattern" class="alert alert-danger" role="alert">
-    Invalid Email
+  <span *ngIf="email?.errors?.['pattern']" class="alert alert-danger" role="alert">
+     Invalid Email
   </span>
 </div>
+<!-- end validate email -->
+<!-- start validate password -->
+  <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="passwordVal">
+    <span *ngIf="password?.errors?.['required'] || password?.errors?.['noSpace']" class="alert alert-danger" role="alert">
+      Password Is Required
+    </span>
+  </div>
+<!-- end validate password -->
 
-<div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="passwordVal">
-  <span *ngIf="password?.errors?.required || password?.errors?.noSpace" class="alert alert-danger" role="alert">
-    Password Is Required
-  </span>
-</div> -->
 
 
 
@@ -34,7 +39,9 @@
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
                 <input formControlName="email" type="text" class="form-control" placeholder="email">
+
               </div>
+
 
               <div class="input-group form-group input-field">
                 <div class="input-group-prepend">
