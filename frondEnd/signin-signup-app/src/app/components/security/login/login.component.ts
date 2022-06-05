@@ -32,29 +32,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  get email(){
-    return this.formParentGroup.get('user.email')
-  }
 
-  get password(){
-    return this.formParentGroup.get('user.password')
-  }
-
-
-//   login(){
-//     this.authenticationService.executeAuthentication(
-//       this.formParentGroup.controls['user'].value.email,
-//       this.formParentGroup.controls['user'].value.passwords
-//     ).subscribe({
-//       next: response =>{
-//         this.router.navigateByUrl('/employess')
-//       },
-//       error: err =>{
-//         console.log(err)
-//       }
-//     })
-
-// }
 
 login(){
         this.authenticationService.executeAuthentication(this.formParentGroup.controls['user'].value.email,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/security/authentication.service';
 import { SpaceValidator } from '../space-validator';
 
 @Component({
@@ -11,7 +13,9 @@ export class SignupComponent implements OnInit {
 
   formParentGroup: FormGroup;
 
-  constructor(private formChildGroup: FormBuilder) { }
+  constructor(private formChildGroup: FormBuilder,
+              private authenticationService: AuthenticationService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.mySignupForm();
@@ -28,17 +32,26 @@ export class SignupComponent implements OnInit {
     })
   }
 
-  get email(){
-    return this.formParentGroup.get('user.email')
-  }
 
-  get password(){
-    return this.formParentGroup.get('user.password')
-  }
 
   signup(){
-    alert(this.formParentGroup.controls['user'].value.email)
-    alert(this.formParentGroup.controls['user'].value.password)
+    this.authenticationService.createUser(
+      this.formParentGroup.controls['user'].value.email,
+      this.formParentGroup.controls['user'].value.password)
+      .subscribe({
+        next: response =>{
+         this.router.navigateByUrl('/login')
+        },
+        error: err =>{
+          console.log(err)
+        }
+      })
+
+
   }
+
+
+
+
 
 }
