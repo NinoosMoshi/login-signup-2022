@@ -16,7 +16,10 @@ export class AuthenticationService {
   // http://localhost:8080/signin
   executeAuthentication(email: string, password: string): Observable<any>{
     return this.http.post<any>(`${this.baseURL}/signin`, { email, password }).pipe(
-     map(response =>response)
+     map(response =>{
+       sessionStorage.setItem("token",`Bearer ${response.token}`)
+       return response
+     })
    );
   }
 
