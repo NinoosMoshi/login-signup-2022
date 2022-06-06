@@ -17,6 +17,7 @@ export class AuthenticationService {
   executeAuthentication(email: string, password: string): Observable<any>{
     return this.http.post<any>(`${this.baseURL}/signin`, { email, password }).pipe(
      map(response =>{
+       sessionStorage.setItem("email",response.email)
        sessionStorage.setItem("token",`Bearer ${response.token}`)
        return response
      })
@@ -32,6 +33,19 @@ export class AuthenticationService {
   }
 
 
+  isLogin(){
+    return !(sessionStorage.getItem('email') == null || sessionStorage.getItem('token') == null);
+ }
+
+ getEmailAuthenticated(){
+  return sessionStorage.getItem("email");
+}
+
+
+
+getToken(){
+    return sessionStorage.getItem("token")
+}
 
 
 

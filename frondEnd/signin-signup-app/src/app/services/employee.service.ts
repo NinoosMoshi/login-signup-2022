@@ -16,12 +16,23 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
 
+  // getAllEmployess(): Observable<Employee[]> {
+  //   let head = new HttpHeaders({
+  //     Authorization: sessionStorage.getItem('token').toString()
+  //   })
+  //   alert(sessionStorage.getItem('token'))
+  //    return this.http.get<GetResponse>(`${this.baseUrl}/api/v1/employees`,{headers: head}).pipe(
+  //      map(
+  //        response =>{
+  //           return response.employeeDTOS
+  //        })
+  //    );
+  // }
+
+
   getAllEmployess(): Observable<Employee[]> {
-    let head = new HttpHeaders({
-      Authorization: sessionStorage.getItem('token').toString()
-    })
-    alert(sessionStorage.getItem('token'))
-     return this.http.get<GetResponse>(`${this.baseUrl}/api/v1/employees`,{headers: head}).pipe(
+
+     return this.http.get<GetResponse>(`${this.baseUrl}/api/v1/employees`).pipe(
        map(
          response =>{
             return response.employeeDTOS
