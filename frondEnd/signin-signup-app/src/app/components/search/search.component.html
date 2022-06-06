@@ -1,0 +1,10 @@
+<div class="d-flex form-inline ml-auto">
+  <form class="d-flex">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+  <form class="d-flex">
+    <button routerLink="/login" *ngIf="!isAuthenticatedUser()" class="btn btn-outline-primary" type="submit">Login</button>
+    <button (click)="isLogout()" *ngIf="isAuthenticatedUser()" class="btn btn-outline-danger" type="submit">Logout</button>
+  </form>
+</div>

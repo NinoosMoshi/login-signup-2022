@@ -13,7 +13,7 @@ export class HttpInterceptorBasicAuthService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(this.auth.getEmailAuthenticated() && this.auth.getToken()){
+    if(this.auth.getEmail() && this.auth.getToken()){
        req = req.clone({
          setHeaders:{
            Authorization:this.auth.getToken()

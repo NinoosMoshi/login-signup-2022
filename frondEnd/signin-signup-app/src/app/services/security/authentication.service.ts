@@ -33,11 +33,16 @@ export class AuthenticationService {
   }
 
 
-  isLogin(){
+isLogin(){
     return !(sessionStorage.getItem('email') == null || sessionStorage.getItem('token') == null);
  }
 
- getEmailAuthenticated(){
+ logout(){
+   sessionStorage.removeItem("email");
+   sessionStorage.removeItem("token");
+ }
+
+ getEmail(){
   return sessionStorage.getItem("email");
 }
 
