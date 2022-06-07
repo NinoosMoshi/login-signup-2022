@@ -42,6 +42,11 @@ export class SignupComponent implements OnInit {
 
 
   signup(){
+    if(this.formParentGroup.invalid){
+      this.formParentGroup.markAllAsTouched()
+      return;
+   }
+
     this.authenticationService.createUser(
       this.formParentGroup.controls['user'].value.email,
       this.formParentGroup.controls['user'].value.password)

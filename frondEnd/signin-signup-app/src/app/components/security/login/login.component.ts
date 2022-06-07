@@ -43,13 +43,18 @@ export class LoginComponent implements OnInit {
 
 
 login(){
+        if(this.formParentGroup.invalid){
+           this.formParentGroup.markAllAsTouched()
+           return;
+        }
+
         this.authenticationService.executeAuthentication(this.formParentGroup.controls['user'].value.email,
         this.formParentGroup.controls['user'].value.password).subscribe({
         next: response =>{
            this.router.navigateByUrl("/employess")
          },
          error: err =>{
-           console.log(err)
+           alert(err)
                 }
         })
       }
