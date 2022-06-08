@@ -12,6 +12,7 @@ import { SpaceValidator } from '../space-validator';
 export class LoginComponent implements OnInit {
 
   formParentGroup : FormGroup;
+  submitted = false;
 
   constructor(private formChildGroup: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -43,6 +44,8 @@ export class LoginComponent implements OnInit {
 
 
 login(){
+  this.submitted = true;
+
         if(this.formParentGroup.invalid){
            this.formParentGroup.markAllAsTouched()
            return;
