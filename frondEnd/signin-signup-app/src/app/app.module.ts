@@ -11,6 +11,7 @@ import { SignupComponent } from './components/security/signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SearchComponent } from './components/search/search.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SearchComponent } from './components/search/search.component';
   ],
   providers: [
     EmployeeService,
-    {provide: HTTP_INTERCEPTORS, useClass:HttpInterceptorBasicAuthService,multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass:HttpInterceptorBasicAuthService,multi:true},
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

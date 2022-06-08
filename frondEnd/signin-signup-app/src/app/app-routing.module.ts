@@ -19,7 +19,13 @@ const routes: Routes = [
 
   {path:'', redirectTo:'/employess',pathMatch:'full'},          // http://localhost:4200/
 
-  {path:'**', redirectTo:'/employess',pathMatch:'full'},        // http://localhost:4200/jsdkljkd
+  {path:'**', redirectTo:'/employess',pathMatch:'full'},       // http://localhost:4200/jsdkljkd
+
+
+
+
+
+
 ];
 
 @NgModule({
