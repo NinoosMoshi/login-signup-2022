@@ -52,7 +52,12 @@ export class SignupComponent implements OnInit {
       this.formParentGroup.controls['user'].value.password)
       .subscribe({
         next: response =>{
-         this.router.navigateByUrl('/login')
+         if(response.result == 1){
+          this.router.navigateByUrl('/login')
+         }else{
+          alert("Email is Exists");
+         }
+
         },
         error: err =>{
           console.log(err)

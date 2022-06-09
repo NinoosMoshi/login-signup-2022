@@ -1,6 +1,7 @@
 package com.ninos.security.controller;
 
 
+import com.ninos.security.dto.AccountResponse;
 import com.ninos.security.dto.LoginResponse;
 import com.ninos.security.jwt.JwtAuthenticationFilter;
 import com.ninos.security.jwt.JwtLogin;
@@ -33,14 +34,24 @@ public class AuthController {
 
     // http://localhost:8080/signup
     @PostMapping("/signup")
-    public void createUser(@RequestBody JwtLogin jwtLogin){
+    public AccountResponse createUser(@RequestBody JwtLogin jwtLogin){
 
-            User user = new User();
-            user.setEmail(jwtLogin.getEmail());
-            user.setPassword(passwordEncoder.encode(jwtLogin.getPassword()));
-            user.setActive(1);
-            user.getAuthorities().add(authoritiesService.getAllAuthorities().get(0));
-            userService.addUser(user);
+            AccountResponse accountResponse = new AccountResponse();
+            boolean result = userService.emailExists(jwtLogin.getEmail());
+
+            if (result){
+                accountResponse.setResult(0);
+            }else{
+                User user = new User();
+                user.setEmail(jwtLogin.getEmail());
+                user.setPassword(passwordEncoder.encode(jwtLogin.getPassword()));
+                user.setActive(1);
+                user.getAuthorities().add(authoritiesService.getAllAuthorities().get(0));
+                userService.addUser(user);
+                accountResponse.setResult(1);
+            }
+
+            return accountResponse;
 
     }
 
