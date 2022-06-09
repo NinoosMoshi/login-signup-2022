@@ -1,0 +1,8 @@
+steps for Email:
+
+1- open your gmail
+2- click on your picture account -> click on (Manage your Google Account) -> on the left side click on (Security).
+3- it must (2-Step Verification) be on, if it's off you will click on (2-Step Verification) -> TURN ON
+4- do again number 1 and number 2 -> click on App passwords -> Select device -> other -> write localhost or any name
+5- generate -> copy the code and past it in application.properties(note: every 4 number splite by space)
+ex: 1234 5678 2345 9876
