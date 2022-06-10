@@ -7,9 +7,11 @@ import com.ninos.security.jwt.JwtAuthenticationFilter;
 import com.ninos.security.jwt.JwtLogin;
 import com.ninos.security.mail.Email;
 import com.ninos.security.mail.EmailService;
+import com.ninos.security.model.Code;
 import com.ninos.security.model.User;
 import com.ninos.security.service.AuthoritiesService;
 import com.ninos.security.service.UserService;
+import com.ninos.util.RandomCode;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -45,14 +47,20 @@ public class AuthController {
             if (result){
                 accountResponse.setResult(0);
             }else{
+                String myCode = RandomCode.generateCode();
                 User user = new User();
                 user.setEmail(jwtLogin.getEmail());
                 user.setPassword(passwordEncoder.encode(jwtLogin.getPassword()));
                 user.setActive(0);
                 user.getAuthorities().add(authoritiesService.getAllAuthorities().get(0));
+
+                Email mail = new Email(jwtLogin.getEmail(), myCode);
+                emailService.sendCodeByMail(mail);
+                Code code = new Code();
+                code.setCode(myCode);
+                user.setCode(code);
                 userService.addUser(user);
 
-                emailService.sendCodeByMail(new Email(jwtLogin.getEmail()));
                 accountResponse.setResult(1);
             }
 

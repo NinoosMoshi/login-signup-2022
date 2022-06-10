@@ -24,9 +24,10 @@ public class EmailServiceImpl implements EmailService {
         simpleMailMessage.setTo(email.getTo());
         simpleMailMessage.setSubject("UserCode Active");
 
-        simpleMailMessage.setText("ACTIVE CODE IS: "+ RandomCode.generateCode());
+        simpleMailMessage.setText("ACTIVE CODE IS: "+ email.getCode());
 
         javaMailSender.send(simpleMailMessage);
+
 
     }
 }
