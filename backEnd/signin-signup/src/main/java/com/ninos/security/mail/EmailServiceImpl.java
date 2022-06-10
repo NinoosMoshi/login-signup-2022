@@ -1,6 +1,6 @@
 package com.ninos.security.mail;
 
-import com.ninos.util.UserCode;
+import com.ninos.util.RandomCode;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.Async;
 public class EmailServiceImpl implements EmailService {
 
     private JavaMailSender javaMailSender;
-    private UserCode userCode;
+
 
     @Async
     @Override
@@ -23,7 +23,9 @@ public class EmailServiceImpl implements EmailService {
         simpleMailMessage.setFrom("ninoosmoshi222@gmail.com");
         simpleMailMessage.setTo(email.getTo());
         simpleMailMessage.setSubject("UserCode Active");
-        simpleMailMessage.setText(userCode.generateCode());
+
+        simpleMailMessage.setText("ACTIVE CODE IS: "+ RandomCode.generateCode());
+
         javaMailSender.send(simpleMailMessage);
 
     }

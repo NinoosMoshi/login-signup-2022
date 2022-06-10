@@ -2,9 +2,9 @@ package com.ninos.util;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-public class UserCode {
+public class RandomCode {
 
-  public String generateCode(){
+  public static String generateCode(){
     return RandomStringUtils.randomAlphanumeric(5).toUpperCase();
   }
 
