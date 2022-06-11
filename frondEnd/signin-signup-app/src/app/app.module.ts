@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SearchComponent } from './components/search/search.component';
 import { CookieService } from 'ngx-cookie-service';
+import { CodeActivationComponent } from './components/security/code-activation/code-activation.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CookieService } from 'ngx-cookie-service';
     EmployeeListComponent,
     LoginComponent,
     SignupComponent,
-    SearchComponent
+    SearchComponent,
+    CodeActivationComponent
   ],
   imports: [
     BrowserModule,

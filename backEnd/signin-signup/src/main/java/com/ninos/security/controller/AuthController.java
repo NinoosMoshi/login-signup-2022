@@ -3,6 +3,7 @@ package com.ninos.security.controller;
 
 import com.ninos.security.dto.AccountResponse;
 import com.ninos.security.dto.LoginResponse;
+import com.ninos.security.dto.UserActive;
 import com.ninos.security.jwt.JwtAuthenticationFilter;
 import com.ninos.security.jwt.JwtLogin;
 import com.ninos.security.mail.Email;
@@ -65,7 +66,24 @@ public class AuthController {
             }
 
             return accountResponse;
+    }
 
+
+    //http://localhost:8080/active
+    @PostMapping("/active")
+    public UserActive getActiveUser(@RequestBody JwtLogin jwtLogin){
+        String enPassword = userService.getPasswordByEmail(jwtLogin.getEmail());  // get password this email from mysql
+        boolean result = passwordEncoder.matches(jwtLogin.getPassword(),enPassword); // match password that user entered with password in mysql
+        UserActive userActive = new UserActive();
+        if (result){
+            int act = userService.getUserActive(jwtLogin.getEmail());
+            userActive.setActive(act);
+        }else{
+          userActive.setActive(-1);
+        }
+
+
+       return userActive;
     }
 
 
