@@ -51,15 +51,28 @@ login(){
            return;
         }
 
-        this.authenticationService.executeAuthentication(this.formParentGroup.controls['user'].value.email,
-        this.formParentGroup.controls['user'].value.password).subscribe({
-        next: response =>{
-           this.router.navigateByUrl("/employess")
-         },
-         error: err =>{
-           alert(err)
-                }
+        this.authenticationService.userActive(
+          this.formParentGroup.controls['user'].value.email,
+          this.formParentGroup.controls['user'].value.password
+        ).subscribe({
+          next: response =>{
+            if(response.active == 1){
+              this.authenticationService.executeAuthentication(this.formParentGroup.controls['user'].value.email,
+              this.formParentGroup.controls['user'].value.password).subscribe({
+              next: response =>{
+                 this.router.navigateByUrl("/employess")
+               }
+              })
+            }else if(response.active == 0){
+              this.router.navigateByUrl("/active")
+            }else{
+              alert("Invalid Credentails")
+            }
+
+          }
         })
+
+
       }
 
 

@@ -35,6 +35,14 @@ export class AuthenticationService {
     )
   }
 
+  userActive(email: string, password: string): Observable<any>{
+    return this.http.post<any>(`${this.baseURL}/active`, { email, password }).pipe(
+     map(response =>{
+      return response;
+     } )
+   );
+ }
+
 
 isLogin(){
     return !(sessionStorage.getItem('email') == null || sessionStorage.getItem('token') == null);

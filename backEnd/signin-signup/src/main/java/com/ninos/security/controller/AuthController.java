@@ -79,7 +79,7 @@ public class AuthController {
             int act = userService.getUserActive(jwtLogin.getEmail());
             userActive.setActive(act);
         }else{
-          userActive.setActive(-1);
+          userActive.setActive(-1);   // return -1 if email and password are wrong
         }
 
 
