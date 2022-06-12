@@ -41,6 +41,21 @@ export class CodeActivationComponent implements OnInit {
        this.formParentGroup.markAllAsTouched();
        return;
     }
+
+    this.authenticationService.activeAccount(
+      this.email,
+      this.formParentGroup.controls['user'].value.code
+    ).subscribe({
+      next: response=>{
+        if(response.result == 1){
+           this.router.navigateByUrl('/login')
+        }else{
+          alert("Invalid Code")
+        }
+      }
+    })
+
+
   }
 
 

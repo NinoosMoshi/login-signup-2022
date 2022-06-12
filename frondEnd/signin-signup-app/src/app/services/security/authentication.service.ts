@@ -43,6 +43,12 @@ export class AuthenticationService {
    );
  }
 
+ activeAccount(email:string, code:string):Observable<any>{
+  return this.http.post<any>(`${this.baseURL}/activated`, {email, code}).pipe(
+    map(response => response)
+  );
+}
+
 
 isLogin(){
     return !(sessionStorage.getItem('email') == null || sessionStorage.getItem('token') == null);
