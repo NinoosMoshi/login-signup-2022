@@ -64,6 +64,7 @@ login(){
                }
               })
             }else if(response.active == 0){
+              sessionStorage.setItem("emailActive",this.formParentGroup.controls['user'].value.email)
               this.router.navigateByUrl("/active")
             }else{
               alert("Invalid Credentails")
