@@ -2,6 +2,7 @@ package com.ninos.security.controller;
 
 
 import com.ninos.security.dto.AccountResponse;
+import com.ninos.security.dto.ActiveAccount;
 import com.ninos.security.dto.LoginResponse;
 import com.ninos.security.dto.UserActive;
 import com.ninos.security.jwt.JwtAuthenticationFilter;
@@ -84,6 +85,24 @@ public class AuthController {
 
 
        return userActive;
+    }
+
+
+
+
+    //http://localhost:8080/activated
+    @PostMapping("/activated")
+    public AccountResponse activeAccount(@RequestBody ActiveAccount activeAccount){
+        User user = userService.getUserByMail(activeAccount.getEmail());
+        AccountResponse accountResponse = new AccountResponse();
+        if (user.getCode().getCode().equals(activeAccount.getCode())){  // user.getCode().getCode() from db, activeAccount.getCode() you entered
+            user.setActive(1);
+            userService.editUser(user);
+            accountResponse.setResult(1);
+        }else {
+            accountResponse.setResult(0);
+        }
+        return  accountResponse;
     }
 
 
