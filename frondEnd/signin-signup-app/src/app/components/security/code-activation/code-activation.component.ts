@@ -18,6 +18,7 @@ export class CodeActivationComponent implements OnInit {
   constructor(private formChildGroup: FormBuilder,private authenticationService: AuthenticationService, private router:Router) { }
 
   ngOnInit(): void {
+    this.email = sessionStorage.getItem("emailActive");
     this.myLoginForm();
   }
 
