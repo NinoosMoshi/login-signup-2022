@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './components/security/reset-password/reset-password.component';
 import { AccountService } from './services/security/CanActive/account.service';
 import { CodeActivationComponent } from './components/security/code-activation/code-activation.component';
 import { LoginLogoutService } from './services/security/CanActive/login-logout.service';
@@ -18,6 +19,9 @@ const routes: Routes = [
 
   {path:'active', component:CodeActivationComponent,             // http://localhost:4200/active
     canActivate:[LoginLogoutService, AccountService]},
+
+  {path:'reset', component:ResetPasswordComponent},             // http://localhost:4200/reset
+
 
 
   {path:'employess', component: EmployeeListComponent,          // http://localhost:4200/employess

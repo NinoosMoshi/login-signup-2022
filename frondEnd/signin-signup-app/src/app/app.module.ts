@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SearchComponent } from './components/search/search.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CodeActivationComponent } from './components/security/code-activation/code-activation.component';
+import { ResetPasswordComponent } from './components/security/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CodeActivationComponent } from './components/security/code-activation/c
     LoginComponent,
     SignupComponent,
     SearchComponent,
-    CodeActivationComponent
+    CodeActivationComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
