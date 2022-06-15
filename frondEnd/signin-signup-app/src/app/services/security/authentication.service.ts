@@ -50,6 +50,9 @@ export class AuthenticationService {
 }
 
 
+
+
+
 isLogin(){
     return !(sessionStorage.getItem('email') == null || sessionStorage.getItem('token') == null);
  }

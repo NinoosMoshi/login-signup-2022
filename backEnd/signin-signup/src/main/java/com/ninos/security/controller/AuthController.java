@@ -1,10 +1,7 @@
 package com.ninos.security.controller;
 
 
-import com.ninos.security.dto.AccountResponse;
-import com.ninos.security.dto.ActiveAccount;
-import com.ninos.security.dto.LoginResponse;
-import com.ninos.security.dto.UserActive;
+import com.ninos.security.dto.*;
 import com.ninos.security.jwt.JwtAuthenticationFilter;
 import com.ninos.security.jwt.JwtLogin;
 import com.ninos.security.mail.Email;
@@ -103,6 +100,45 @@ public class AuthController {
             accountResponse.setResult(0);
         }
         return  accountResponse;
+    }
+
+
+
+    //http://localhost:8080/check-email
+    @PostMapping("/check-email")
+    public AccountResponse resetPasswordEmail(@RequestBody LoginResponse loginResponse){
+        AccountResponse accountResponse = new AccountResponse();
+        User user = userService.getUserByMail(loginResponse.getEmail());
+        if (user != null){
+            String code = RandomCode.generateCode();
+            Email employeeMail = new Email(loginResponse.getEmail(), code);
+            emailService.sendCodeByMail(employeeMail);
+            user.getCode().setCode(code);
+            userService.editUser(user);
+            accountResponse.setResult(1);
+        }else{
+            accountResponse.setResult(0);
+        }
+        return accountResponse;
+    }
+
+
+    @PostMapping("/resetPassword")
+    public AccountResponse resetPassword(@RequestBody NewPassword newPassword){
+        AccountResponse accountResponse = new AccountResponse();
+        User user = userService.getUserByMail(newPassword.getEmail());
+        if(user != null){
+            if(user.getCode().getCode().equals(newPassword.getCode())){
+                user.setPassword(passwordEncoder.encode(newPassword.getPassword()));
+                userService.editUser(user);
+                accountResponse.setResult(1);
+            }else {
+                accountResponse.setResult(0);
+            }
+        }else{
+            accountResponse.setResult(0);
+        }
+        return accountResponse;
     }
 
 
