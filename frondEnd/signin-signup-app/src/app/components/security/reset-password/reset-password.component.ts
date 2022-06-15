@@ -13,7 +13,7 @@ export class ResetPasswordComponent implements OnInit {
 
   formParentGroup: FormGroup;
   formParentGroupReset: FormGroup;
-  enableFrom: boolean = true;
+  enableForm: boolean = true;
 
   constructor(private formChildGroup: FormBuilder,private authenticationService: AuthenticationService, private router:Router) { }
 
@@ -66,6 +66,41 @@ export class ResetPasswordComponent implements OnInit {
       this.formParentGroup.markAllAsTouched();
       return
    }
+
+   this.authenticationService.checkEmail(this.formParentGroup.controls['user'].value.email).subscribe({
+    next: response =>{
+      if(response.result == 1){
+        this.enableForm = false;
+      }else{
+        alert("Email is invalid")
+      }
+    }
+   })
+
+  }
+
+
+  resetNewPassword(){
+    if(this.formParentGroupReset.invalid){
+      this.formParentGroupReset.markAllAsTouched();
+      return
+    }
+
+    this.authenticationService.resetPassword(
+      this.formParentGroup.controls['user'].value.email,
+      this.formParentGroupReset.controls['newUser'].value.password,
+      this.formParentGroupReset.controls['newUser'].value.code
+    ).subscribe({
+      next: response =>{
+        if(response.result == 1){
+          alert("Success Code")
+          this.router.navigateByUrl("/login")
+        }else{
+          alert("Invalid Code")
+        }
+      }
+    })
+
   }
 
 
