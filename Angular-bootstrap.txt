@@ -1,0 +1,64 @@
+install bootstrap, jquery , popperjs
+
+
+>npm install --save bootstrap jquery @popperjs/core
+
+
+angular.json
+
+ "styles": [
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+
+
+
+install fontawesome
+>npm install --save @fortawesome/fontawesome-free
+>npm install --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons npm install @fortawesome/angular-fontawesome
+
+
+
+angular.json
+"styles": [
+           "node_modules/@fortawesome/fontawesome-free/css/all.css"
+        ]
+
+"scripts": [
+          "node_modules/@fortawesome/fontawesome-free/js/all.js"
+        ]
+
+
+
+
+
+app.module.ts
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule
+  ],
+
+
+
+
+
+
+i have a question: what is the difference between :
+this.departmentId = parseInt(this.route.snapshot.paramMap.get('id'));
+and 
+this.route.paramMap.subscribe(params => {
+      this.departmentId = params.get("id")
+    })
+
+
+
+
+

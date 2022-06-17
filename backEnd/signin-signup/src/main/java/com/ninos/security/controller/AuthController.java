@@ -73,15 +73,21 @@ public class AuthController {
         String enPassword = userService.getPasswordByEmail(jwtLogin.getEmail());  // get password this email from mysql
         boolean result = passwordEncoder.matches(jwtLogin.getPassword(),enPassword); // match password that user entered with password in mysql
         UserActive userActive = new UserActive();
-        if (result){
+        if(result){
             int act = userService.getUserActive(jwtLogin.getEmail());
+            if(act == 0){   // mean it's not active
+                String code = RandomCode.generateCode();
+                Email employeeMail = new Email(jwtLogin.getEmail(), code);
+                emailService.sendCodeByMail(employeeMail);
+                User user = userService.getUserByMail(jwtLogin.getEmail());
+                user.getCode().setCode(code);
+                userService.editUser(user);
+            }
             userActive.setActive(act);
         }else{
-          userActive.setActive(-1);   // return -1 if email and password are wrong
+            userActive.setActive(-1); // -1 meaning the password that user entered is not correct
         }
-
-
-       return userActive;
+        return userActive;
     }
 
 

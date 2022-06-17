@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/security/authentication.service';
 import { SpaceValidator } from '../space-validator';
@@ -11,11 +11,11 @@ import { SpaceValidator } from '../space-validator';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  formParentGroup: FormGroup;
-  formParentGroupReset: FormGroup;
+  formParentGroup: UntypedFormGroup;
+  formParentGroupReset: UntypedFormGroup;
   enableForm: boolean = true;
 
-  constructor(private formChildGroup: FormBuilder,private authenticationService: AuthenticationService, private router:Router) { }
+  constructor(private formChildGroup: UntypedFormBuilder,private authenticationService: AuthenticationService, private router:Router) { }
 
   ngOnInit(): void {
     this.mySignupForm();
@@ -25,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
   mySignupForm(){
     this.formParentGroup = this.formChildGroup.group({
       user:this.formChildGroup.group({
-        email: new FormControl('',[
+        email: new UntypedFormControl('',[
           Validators.required,
           SpaceValidator.onlyContainSpace,
           Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')
@@ -37,9 +37,9 @@ export class ResetPasswordComponent implements OnInit {
   mySignupFormReset(){
     this.formParentGroupReset = this.formChildGroup.group({
       newUser: this.formChildGroup.group({
-        code: new FormControl('',[Validators.required,
+        code: new UntypedFormControl('',[Validators.required,
                                   SpaceValidator.onlyContainSpace]),
-        password: new FormControl('', [Validators.required])
+        password: new UntypedFormControl('', [Validators.required])
       })
 
     })

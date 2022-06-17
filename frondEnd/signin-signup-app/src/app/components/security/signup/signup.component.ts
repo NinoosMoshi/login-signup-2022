@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/security/authentication.service';
 import { SpaceValidator } from '../space-validator';
@@ -11,9 +11,9 @@ import { SpaceValidator } from '../space-validator';
 })
 export class SignupComponent implements OnInit {
 
-  formParentGroup: FormGroup;
+  formParentGroup: UntypedFormGroup;
 
-  constructor(private formChildGroup: FormBuilder,
+  constructor(private formChildGroup: UntypedFormBuilder,
               private authenticationService: AuthenticationService,
               private router: Router) { }
 
@@ -24,10 +24,10 @@ export class SignupComponent implements OnInit {
   mySignupForm(){
     this.formParentGroup = this.formChildGroup.group({
       user: this.formChildGroup.group({
-        email: new FormControl('',[Validators.required,
+        email: new UntypedFormControl('',[Validators.required,
                                    SpaceValidator.onlyContainSpace,
                                    Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$') ]),
-        password: new FormControl('', [Validators.required])
+        password: new UntypedFormControl('', [Validators.required])
       })
     })
   }

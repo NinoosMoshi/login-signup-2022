@@ -14,6 +14,7 @@ import { SearchComponent } from './components/search/search.component';
 import { CookieService } from 'ngx-cookie-service';
 import { CodeActivationComponent } from './components/security/code-activation/code-activation.component';
 import { ResetPasswordComponent } from './components/security/reset-password/reset-password.component';
+import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,28 @@ import { ResetPasswordComponent } from './components/security/reset-password/res
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SocialLoginModule
   ],
   providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '846938154013-of6iv1dnuv4q0mdefq3cncfqovlj9ug0.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('5152371748174718')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    },
     EmployeeService,
     {provide: HTTP_INTERCEPTORS, useClass:HttpInterceptorBasicAuthService,multi:true},
     CookieService
