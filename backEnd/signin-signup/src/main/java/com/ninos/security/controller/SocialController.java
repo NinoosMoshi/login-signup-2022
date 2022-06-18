@@ -13,6 +13,7 @@ import com.ninos.security.model.Authorities;
 import com.ninos.security.service.AuthoritiesService;
 import com.ninos.security.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping("/social")
 public class SocialController {
@@ -45,6 +45,13 @@ public class SocialController {
     private AuthoritiesService authoritiesService;
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    @Autowired
+    public SocialController(UserService userService, PasswordEncoder passwordEncoder, AuthoritiesService authoritiesService, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.authoritiesService = authoritiesService;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
 
     //http://localhost:8080/social/google
     @PostMapping("/google")
@@ -59,12 +66,7 @@ public class SocialController {
         boolean result = userService.emailExists(payload.getEmail());
 
         LoginResponse loginResponse = new LoginResponse();
-        if (result){
-            JwtLogin jwtLogin = new JwtLogin();
-            jwtLogin.setEmail(payload.getEmail());
-            jwtLogin.setPassword(privatePassword);
-            loginResponse = jwtAuthenticationFilter.login(jwtLogin);
-        }else{
+        if (!result){
             com.ninos.security.model.User userModel = new com.ninos.security.model.User();
             userModel.setEmail(payload.getEmail());
             userModel.setPassword(passwordEncoder.encode(privatePassword));
@@ -72,12 +74,11 @@ public class SocialController {
             List<Authorities> authorities = authoritiesService.getAllAuthorities();
             userModel.getAuthorities().add(authorities.get(0));
             userService.addUser(userModel);
-            JwtLogin jwtLogin = new JwtLogin();
-            jwtLogin.setEmail(payload.getEmail());
-            jwtLogin.setPassword(privatePassword);
-            loginResponse = jwtAuthenticationFilter.login(jwtLogin);
         }
-
+        JwtLogin jwtLogin = new JwtLogin();
+        jwtLogin.setEmail(payload.getEmail());
+        jwtLogin.setPassword(privatePassword);
+        loginResponse = jwtAuthenticationFilter.login(jwtLogin);
         return loginResponse;
     }
 
