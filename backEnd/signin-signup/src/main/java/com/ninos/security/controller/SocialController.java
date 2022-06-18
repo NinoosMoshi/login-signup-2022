@@ -63,12 +63,63 @@ public class SocialController {
                         .setAudience(Collections.singleton(idClient));
         GoogleIdToken googleIdToken = GoogleIdToken.parse(ver.getJsonFactory(),tokenDto.getToken());
         GoogleIdToken.Payload payload = googleIdToken.getPayload();
-        boolean result = userService.emailExists(payload.getEmail());
 
+//        boolean result = userService.emailExists(payload.getEmail());
+//        LoginResponse loginResponse = new LoginResponse();
+//        if (!result){
+//            com.ninos.security.model.User userModel = new com.ninos.security.model.User();
+//            userModel.setEmail(payload.getEmail());
+//            userModel.setPassword(passwordEncoder.encode(privatePassword));
+//            userModel.setActive(1);
+//            List<Authorities> authorities = authoritiesService.getAllAuthorities();
+//            userModel.getAuthorities().add(authorities.get(0));
+//            userService.addUser(userModel);
+//        }
+//        JwtLogin jwtLogin = new JwtLogin();
+//        jwtLogin.setEmail(payload.getEmail());
+//        jwtLogin.setPassword(privatePassword);
+//        loginResponse = jwtAuthenticationFilter.login(jwtLogin);
+//        return loginResponse;
+
+        return googleFacebook(payload.getEmail());
+    }
+
+
+
+    //http://localhost:8080/social/facebook
+    @PostMapping("/facebook")
+    public LoginResponse loginWithFacebook(@RequestBody TokenDto tokenDto){
+        Facebook facebook = new FacebookTemplate(tokenDto.getToken());
+        String [] data = {"email","name","picture"};
+        User userFacebook = facebook.fetchObject("me",User.class,data);
+
+
+//        boolean result = userService.emailExists(userFacebook.getEmail());
+//        LoginResponse loginResponse = new LoginResponse();
+//        if (!result){
+//            com.ninos.security.model.User userModel = new com.ninos.security.model.User();
+//            userModel.setEmail(userModel.getEmail());
+//            userModel.setPassword(passwordEncoder.encode(privatePassword));
+//            userModel.setActive(1);
+//            List<Authorities> authorities = authoritiesService.getAllAuthorities();
+//            userModel.getAuthorities().add(authorities.get(0));
+//            userService.addUser(userModel);
+//        }
+//        JwtLogin jwtLogin = new JwtLogin();
+//        jwtLogin.setEmail(userFacebook.getEmail());
+//        jwtLogin.setPassword(privatePassword);
+//        loginResponse = jwtAuthenticationFilter.login(jwtLogin);
+
+        return googleFacebook(userFacebook.getEmail());
+    }
+
+
+    private LoginResponse googleFacebook(String email){
+        boolean result = userService.emailExists(email);
         LoginResponse loginResponse = new LoginResponse();
         if (!result){
             com.ninos.security.model.User userModel = new com.ninos.security.model.User();
-            userModel.setEmail(payload.getEmail());
+            userModel.setEmail(email);
             userModel.setPassword(passwordEncoder.encode(privatePassword));
             userModel.setActive(1);
             List<Authorities> authorities = authoritiesService.getAllAuthorities();
@@ -76,21 +127,10 @@ public class SocialController {
             userService.addUser(userModel);
         }
         JwtLogin jwtLogin = new JwtLogin();
-        jwtLogin.setEmail(payload.getEmail());
+        jwtLogin.setEmail(email);
         jwtLogin.setPassword(privatePassword);
         loginResponse = jwtAuthenticationFilter.login(jwtLogin);
-        return loginResponse;
-    }
-
-
-
-    //http://localhost:8080/social/facebook
-    @PostMapping("/facebook")
-    public ResponseEntity<?> loginWithFacebook(@RequestBody TokenDto tokenDto){
-        Facebook facebook = new FacebookTemplate(tokenDto.getToken());
-        String [] data = {"email","name","picture"};
-        User user = facebook.fetchObject("me",User.class,data);
-        return new ResponseEntity<>(user,HttpStatus.OK);
+        return jwtAuthenticationFilter.login(jwtLogin);
     }
 
 
