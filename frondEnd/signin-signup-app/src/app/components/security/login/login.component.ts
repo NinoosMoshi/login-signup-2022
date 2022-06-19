@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } 
 import { Router } from '@angular/router';
 import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { AuthenticationService } from 'src/app/services/security/authentication.service';
+import { SocialMediaService } from 'src/app/services/security/social-media.service';
 import { SpaceValidator } from '../space-validator';
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(private formChildGroup: UntypedFormBuilder,
               private authenticationService: AuthenticationService,
               private router: Router,
-              private authService: SocialAuthService) { }
+              private authService: SocialAuthService,
+              private socialService: SocialMediaService) { }
 
   ngOnInit(): void {
     this.myLoginForm();
@@ -82,7 +84,11 @@ login(){
       signInWithGoogle(): void {
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
           data => {
-            console.log(data)
+            this.socialService.loginWithGoogle(data.idToken).subscribe({
+              next: response =>{
+                this.router.navigateByUrl("/employess")
+              }
+            })
           }
         );
       }
@@ -90,7 +96,11 @@ login(){
       signInWithFB(): void {
         this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(
           data =>{
-            console.log(data)
+            this.socialService.loginWithFacebook(data.authToken).subscribe({
+              next: response=>{
+                this.router.navigateByUrl("/employess")
+              }
+            })
           }
         );
       }
