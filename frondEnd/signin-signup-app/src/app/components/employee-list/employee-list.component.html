@@ -1,24 +1,32 @@
 
-<div class="container mt-5">
+ <div class="container global-container">
 
+  <!-- <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+  </div> -->
 
-
-<div class="card shadow">
+<div class="card shadow login-form ">
+  <div>
+    <button class="btn btn-primary" >New Employee</button>
+  </div>
   <div class="card-body">
 
-    <table class="table table-borderless table-responsive card-1 p-4">
+    <table class="table table-borderless table-responsive card-1 ">
       <thead>
           <tr class="border-bottom">
-              <th> <span class="ml-2">Id</span> </th>
+              <th> <span class="ml-2">Employee</span> </th>
               <th> <span class="ml-2">First Name</span> </th>
               <th> <span class="ml-2">Last Name</span> </th>
               <th> <span class="ml-2">Email</span> </th>
+              <th> <span class="ml-4">Action</span> </th>
           </tr>
       </thead>
       <tbody>
           <tr class="border-bottom" *ngFor="let temp of employess">
             <td>
-              <div class="p-2"> <span class="font-weight-bold">{{temp.id}}</span> </div>
+              <div class="p-2 d-flex flex-row align-items-center mb-2"> <img src="https://i.imgur.com/ZSkeqnd.jpg" width="40" class="rounded-circle">
+                  <div class="d-flex flex-column ml-2"> <span class="d-block font-weight-bold">{{temp.firstName }} {{temp.lastName}}</span> <small class="text-muted">Jasmine Owner Reality group</small> </div>
+              </div>
             </td>
               <td>
                   <div class="p-2"> <span class="font-weight-bold">{{temp.firstName}}</span> </div>
@@ -31,11 +39,58 @@
                 <div class="p-2"> <span class="font-weight-bold">{{temp.email}}</span></div>
             </td>
 
+              <td>
+                <div>
+                <button  class="btn btn-sm btn-info"><i class="fa fa-eye"></i>View</button>
+                <button  class="btn btn-sm btn-warning" ><i class="fa fa-edit"></i>Edit</button>
+                <button  class="btn btn-sm btn-danger"><i class="fa fa-times" style="color:rgb(253, 253, 253)"></i>Delete</button>
+                </div>
+              </td>
           </tr>
       </tbody>
+
   </table>
+  <div class="d-flex justify-content-center">
+    <ngb-pagination
+    [(page)]="page"
+    [pageSize]="employessInEachPage"
+    [collectionSize]="totalEmployess"
+    (pageChange)="doing()"
+  >
+  </ngb-pagination>
+</div>
+
   </div>
+
 </div>
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

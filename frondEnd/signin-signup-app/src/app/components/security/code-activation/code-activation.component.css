@@ -1,4 +1,4 @@
-.card{
+/* .card{
   height: 370px;
   margin-top: auto;
   margin-bottom: auto;
@@ -104,3 +104,244 @@ input:focus{
   font-size: 18px !important;
   color: azure;
 }
+ */
+
+
+
+
+/*
+
+.card{
+  margin-top: 95px;
+  height: 305px;
+  width: 400px;
+  background-color: rgba(0,0,0,0.5) !important;
+}
+
+
+.input-field{
+
+  margin-top: 20px;
+}
+
+.input-field span{
+  padding: 11px;
+}
+
+.social_icon span{
+  font-size: 60px;
+  margin-left: 10px;
+  color: #FFC312;
+}
+
+.social_icon span:hover{
+  color: white;
+  cursor: pointer;
+}
+
+.card-header h3{
+  color: white;
+}
+
+.social_icon{
+  position: absolute;
+  right: 20px;
+  top: -45px;
+}
+
+.input-group-prepend span{
+  width: 50px;
+  background-color: #FFC312;
+  color: black;
+  border:0 !important;
+}
+
+input:focus{
+  outline: 0 0 0 0  !important;
+  box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+  color: white;
+}
+
+.remember input
+{
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
+}
+
+
+.login_btn{
+  color: #fff;
+  background-color: #FFC312;
+  width: 100%;
+}
+
+.google_btn{
+  color: #fff;
+  background-color: #CF4332;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.google_btn i{
+  margin-right: 10px;
+}
+
+.facebook_btn{
+  color: #fff;
+  background-color: #3C66C4;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.facebook_btn i{
+  margin-right: 10px;
+}
+
+.login_btn:hover{
+  color: #fff;
+  background-color: #FF6A00;
+}
+
+.links{
+  color: white;
+}
+
+.links a{
+  margin-left: 4px;
+  color: #000;
+}
+.myheight
+{
+  margin-top: 90px;
+}
+
+
+.emailVal span
+{
+  position: absolute;
+  left: 53px;
+  width: 315px;
+  margin-top: -79px;
+  height: 50px;
+}
+
+.passwordVal span
+{
+  position: absolute;
+  left: 53px;
+  width: 315px;
+  margin-top: -20px;
+  height: 50px;
+}
+
+
+.submitVal{
+  margin-top: 25px;
+} */
+
+
+
+
+
+
+
+
+.global-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0db8de;
+}
+
+
+form {
+  padding-top: 10px;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.form-group span {
+  color: #CF4332;
+}
+
+
+.login-form {
+  width: 380px;
+  height: 285px;
+  margin: 20px;
+  background: #1a2226 !important;
+  border-radius: 10px !important;
+}
+
+
+input[type="text"] {
+  background: #1a2226;
+  border: 2px solid #0db8de;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+input[type="text"] :focus{
+  outline: none;
+  border: none;
+  background: #1a2226;
+  margin: 0;
+}
+
+
+.card-title {
+  font-weight: 900;
+  padding-top: 20px;
+}
+
+.btn {
+  background: #0db8de !important;
+  font-size: 14px;
+  transform: translateY(10px);
+  border-radius: 10px !important;
+}
+
+.signup {
+  text-align: center;
+  padding-top: 25px;
+}
+
+.social-media {
+  max-width: 400px;
+  background-color: #1a2226;
+  margin: auto;
+  padding: 30px 0;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius:5px;
+  border-top: 1px solid #dee9ff;
+  margin-top: 30px;
+}
+
+.social-media a,i {
+  padding-right: 10px;
+}
+
+
+.alert
+{
+  border-radius: 10px;
+  padding: 5px;
+  border-style: none;
+  margin-top: -9px;
+}
+
+.alert-danger {
+  color: #CF4332;
+  background-color: transparent;
+}
+
+

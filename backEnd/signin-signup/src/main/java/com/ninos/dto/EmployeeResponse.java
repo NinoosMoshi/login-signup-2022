@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class EmployeeResponse {
     private List<EmployeeDTO> employeeDTOS;
-    private int pageNo;
+    private int pageNumber;
     private int pageSize;
     private long totalElements;
     private int totalPages;

@@ -21,7 +21,7 @@
 
 
 
-<div class="container">
+<!-- <div class="container">
   <div class="d-flex justify-content-center h-100 myheight">
     <div class="card">
       <div class="card-header">
@@ -41,14 +41,14 @@
 
                 <div>
                   <input type="text" formControlName="email" class="form-control" placeholder="email" />
-                </div>
+                </div> -->
                 <!-- start validate email -->
-                  <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger" >
+                  <!-- <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger " >
                       <div *ngIf="email?.errors?.['required'] || email?.errors?.['noSpace']" class="alert alert-danger" role="alert">Email is required</div>
                       <div *ngIf="email?.errors?.['pattern']" class="alert alert-danger" role="alert">Email must be a valid email address</div>
-                </div>
+                </div> -->
                 <!-- end validate email -->
-              </div>
+              <!-- </div>
 
               <div class="input-group form-group input-field">
                 <div class="input-group-prepend">
@@ -57,19 +57,19 @@
 
                 <div>
                   <input formControlName="password" type="password" class="form-control" placeholder="password">
-                </div>
+                </div> -->
                 <!-- start validate password -->
-                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="passwordVal">
+                <!-- <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="passwordVal">
                   <div *ngIf="password?.errors?.['required'] || password?.errors?.['noSpace']" class="alert alert-danger" role="alert">
                     Password Is Required
                   </div>
-                </div>
+                </div> -->
                 <!-- end validate password -->
-              </div>
+              <!-- </div> -->
 
 
 
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <button type="submit" class="btn float-right login_btn">Login</button>
               </div>
 
@@ -87,19 +87,65 @@
                 <button (click)="signInWithFB()"  type="submit" class="btn float-right facebook_btn"><i class="fab fa-facebook-f"></i>Login via Facebook</button>
               </div>
 
-        </div>
+        </div> -->
 
-        </form>
 
-      </div>
-      <div class="card-footer">
-        <div class="d-flex justify-content-center links">
-          Don't have an account?<a routerLink="/signup">Sign Up</a>
-        </div>
-        <div class="d-flex justify-content-center links">
-          <a routerLink="/reset">Forgot your password?</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+
+
+
+
+
+
+        <div class="global-container">
+          <div class="card login-form">
+            <div class="card-body">
+               <h1 class="card-title text-center">LOGIN</h1>
+               <div class="card-text">
+
+                 <form (ngSubmit)="login()" [formGroup]="formParentGroup">
+                  <div formGroupName="user">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email Address</label>
+                      <input formControlName="email" type="email" class="form-control form-control-sm"  />
+                      <!-- start validate email -->
+                          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger" >
+                              <div *ngIf="email?.errors?.['required'] || email?.errors?.['noSpace']" class="alert alert-danger " role="alert">Email is required</div>
+                              <div *ngIf="email?.errors?.['pattern']" class="alert alert-danger" role="alert">Email must be a valid email address</div>
+                          </div>
+                       <!-- end validate email -->
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <a href="#" style="float: right; font-size:12px;">Forgot Password?</a>
+                      <input formControlName="password" type="password" class="form-control form-control-sm" />
+                       <!-- start validate password -->
+                          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" >
+                            <div *ngIf="password?.errors?.['required'] || password?.errors?.['noSpace']" class="alert alert-danger" role="alert">
+                              Password Is Required
+                            </div>
+                          </div>
+                      <!-- end validate password -->
+                    </div>
+
+                    <div class="d-grid ">
+                      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </div>
+
+                    <div class="signup">
+                        Don't have an account?  <a routerLink="/signup">Create One</a>
+                    </div>
+                  </div>
+                 </form>
+
+                 <div class="social-media">
+                   <h5>Login With</h5>
+                   <a (click)="signInWithFB()"><i class="fab fa-facebook fa-xl" style="color: #3C66C4;"></i></a>
+                   <a (click)="signInWithGoogle()"><i class="fab fa-google fa-xl" style="color: #CF4332;"></i></a>
+                 </div>
+
+               </div>
+            </div>
+          </div>
+       </div>

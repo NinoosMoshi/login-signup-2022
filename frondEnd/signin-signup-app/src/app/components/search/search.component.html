@@ -1,10 +1,45 @@
-<div class="d-flex form-inline ml-auto">
-  <form *ngIf="isAuthenticatedUser()" class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-  </form>
-  <form class="d-flex">
-    <button routerLink="/login" *ngIf="!isAuthenticatedUser()" class="btn btn-outline-primary" type="submit">Login</button>
-    <button (click)="isLogout()" *ngIf="isAuthenticatedUser()" class="btn btn-outline-danger" type="submit">Logout</button>
-  </form>
-</div>
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+  <div class="container">
+    <a href="#" class="navbar-brand">Web Zone</a>
+
+    <button type="button"
+            class="navbar-toggler"
+            data-bs-target="#navbarNav"
+            data-bs-toggle="collapse"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle Navbar"
+            >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li *ngIf="isAuthenticatedUser()" class="nav-item">
+          <a href="#" class="nav-link text-white">Home</a>
+        </li>
+        <li *ngIf="isAuthenticatedUser()" class="nav-item">
+          <a href="#" class="nav-link text-white">List</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="d-flex">
+      <input #key (keyup)="doSearch(key.value)"
+             *ngIf="isAuthenticatedUser()" class="form-control me-2"
+              type="search" placeholder="Search" aria-label="Search">
+    </div>
+
+    <div>
+      <button routerLink="/login" *ngIf="!isAuthenticatedUser()" class="btn btn-primary" type="submit">LOGIN</button>
+      <button (click)="isLogout()" *ngIf="isAuthenticatedUser()" class="btn btn-danger" type="submit">LOGOUT</button>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+

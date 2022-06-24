@@ -1,19 +1,5 @@
-<!-- <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="emailVal">
-  <span *ngIf="email?.errors?.required || email?.errors?.noSpace" class="alert alert-danger" role="alert">
-    Email Is Required
-  </span>
-  <span *ngIf="email?.errors?.pattern" class="alert alert-danger" role="alert">
-    Invalid Email
-  </span>
-</div>
 
-<div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="passwordVal">
-  <span *ngIf="password?.errors?.required || password?.errors?.noSpace" class="alert alert-danger" role="alert">
-    Password Is Required
-  </span>
-</div> -->
-
-
+<!--
 <div class="container">
   <div class="d-flex justify-content-center h-100 myheight">
     <div class="card">
@@ -31,7 +17,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-user"></i></span>
                 </div>
-                <input formControlName="email" type="text" class="form-control" placeholder="email">
+                <input formControlName="email" type="text" class="form-control" placeholder="email"> -->
 
                 <!-- <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="passwordVal">
                   <span *ngIf="email?.errors?.required || email?.errors?.noSpace" class="alert alert-danger" role="alert">
@@ -42,13 +28,13 @@
                   </span>
                 </div> -->
 
-              </div>
+              <!-- </div>
 
               <div class="input-group form-group input-field">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
-                <input formControlName="password" type="password" class="form-control" placeholder="password">
+                <input formControlName="password" type="password" class="form-control" placeholder="password"> -->
 
 
                 <!-- <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="passwordVal">
@@ -59,22 +45,66 @@
 
 
 
-              </div>
 
-              <div class="form-group submitVal">
-                <button type="submit" class="btn float-right login_btn">Sign up</button>
-              </div>
 
-        </div>
-        </form>
-      </div>
 
-      <div class="card-footer">
-        <div class="d-flex justify-content-center links">
-          Go To Login<a routerLink="/login">Login</a>
-        </div>
-      </div>
 
-    </div>
-  </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="global-container">
+                  <div class="card login-form">
+                    <div class="card-body">
+                       <h1 class="card-title text-center">Register</h1>
+                       <div class="card-text">
+
+                         <form (ngSubmit)="signup()" [formGroup]="formParentGroup">
+                          <div formGroupName="user">
+                           <div class="form-group">
+                             <label for="exampleInputEmail1">Email Address</label>
+                             <input formControlName="email" type="email" class="form-control form-control-sm" id="exampleInputEmail1"/>
+                               <!-- start validate email -->
+                                <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger" >
+                                  <div *ngIf="email?.errors?.['required'] || email?.errors?.['noSpace']" class="alert alert-danger " role="alert">Email is required</div>
+                                  <div *ngIf="email?.errors?.['pattern']" class="alert alert-danger" role="alert">Email must be a valid email address</div>
+                                </div>
+                               <!-- end validate email -->
+                           </div>
+
+                           <div class="form-group">
+                             <label for="exampleInputPassword1">Password</label>
+                             <input formControlName="password" type="password" class="form-control form-control-sm" id="exampleInputPassword1"/>
+                             <!-- start validate password -->
+                              <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" >
+                                <div *ngIf="password?.errors?.['required'] || password?.errors?.['noSpace']" class="alert alert-danger" role="alert">
+                                  Password Is Required
+                                </div>
+                              </div>
+                             <!-- end validate password -->
+                           </div>
+
+                           <div class="d-grid ">
+                             <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+                           </div>
+
+
+                           <div class="signup">
+                            Have already an account?  <a routerLink="/login">Login here</a>
+                         </div>
+                          </div>
+                         </form>
+
+                       </div>
+                    </div>
+                  </div>
+                </div>

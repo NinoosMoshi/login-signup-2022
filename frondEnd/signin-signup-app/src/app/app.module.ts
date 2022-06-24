@@ -1,5 +1,6 @@
 import { HttpInterceptorBasicAuthService } from './services/security/interceptor/http-interceptor-basic-auth.service';
 import { NgModule } from '@angular/core';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +17,8 @@ import { CodeActivationComponent } from './components/security/code-activation/c
 import { ResetPasswordComponent } from './components/security/reset-password/reset-password.component';
 import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +27,7 @@ import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, So
     SignupComponent,
     SearchComponent,
     CodeActivationComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, So
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    NgbPaginationModule
   ],
   providers: [
     {

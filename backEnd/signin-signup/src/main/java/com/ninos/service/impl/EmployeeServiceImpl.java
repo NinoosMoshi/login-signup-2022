@@ -23,26 +23,44 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
     private ModelMapper mapper;
 
-
     @Override
-    public EmployeeResponse getAllEmployee(int pageNo, int pageSize, String sortBy, String sortDir) {
-        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()  // if sort is asc then return asc
-                : Sort.by(sortBy).descending();
+    public EmployeeResponse getEmployees(int pageNumber,int pageSize) {
 
         // create Pageable instance
-        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
 
         Page<Employee> employees = employeeRepository.findAll(pageable);
 
         // get content for page object
         List<Employee> listOfEmployees = employees.getContent();
 
-//        return posts.stream().map(temp -> mapToDTO(temp)).collect(Collectors.toList());
         List<EmployeeDTO> content = listOfEmployees.stream().map(temp -> mapToDTO(temp)).collect(Collectors.toList());
 
         EmployeeResponse employeeResponse = new EmployeeResponse();
         employeeResponse.setEmployeeDTOS(content);
-        employeeResponse.setPageNo(employees.getNumber());
+        employeeResponse.setPageNumber(employees.getNumber());
+        employeeResponse.setPageSize(employees.getSize());
+        employeeResponse.setTotalElements(employees.getTotalElements());
+        employeeResponse.setTotalPages(employees.getTotalPages());
+        employeeResponse.setLast(employees.isLast());
+        return employeeResponse;
+    }
+
+    @Override
+    public EmployeeResponse getEmployeeByKeySearch(String key, int pageNumber,int pageSize) {
+        // create Pageable instance
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+
+        Page<Employee> employees = employeeRepository.findEmployeeByFirstNameContaining(key,pageable);
+
+        // get content for page object
+        List<Employee> listOfEmployees = employees.getContent();
+
+        List<EmployeeDTO> content = listOfEmployees.stream().map(temp -> mapToDTO(temp)).collect(Collectors.toList());
+
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.setEmployeeDTOS(content);
+        employeeResponse.setPageNumber(employees.getNumber());
         employeeResponse.setPageSize(employees.getSize());
         employeeResponse.setTotalElements(employees.getTotalElements());
         employeeResponse.setTotalPages(employees.getTotalPages());
@@ -51,18 +69,33 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
-    // convert DTO into Entity
-    private Employee mapToEntity(EmployeeDTO employeeDTO){
-        Employee employee = mapper.map(employeeDTO, Employee.class);
-        return employee;
+
+    @Override
+    public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
+        // convert DTO to Entity
+        Employee employee = mapToEntity(employeeDTO);
+        Employee newEmployee = employeeRepository.save(employee);
+
+        // convert Entity to DTO
+        EmployeeDTO employeeResponse = mapToDTO(newEmployee);
+        return employeeResponse;
     }
 
 
-    // convert Entity into DTO
-    private EmployeeDTO mapToDTO(Employee employee){
-        EmployeeDTO employeeDTO = mapper.map(employee, EmployeeDTO.class);
-        return employeeDTO;
-    }
+
+        // convert DTO into Entity
+        private Employee mapToEntity(EmployeeDTO employeeDTO){
+            Employee employee = mapper.map(employeeDTO, Employee.class);
+            return employee;
+        }
+
+
+        // convert Entity into DTO
+        private EmployeeDTO mapToDTO(Employee employee){
+            EmployeeDTO employeeDTO = mapper.map(employee, EmployeeDTO.class);
+            return employeeDTO;
+        }
+
 
 
 }

@@ -1,0 +1,38 @@
+ .global-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0db8de;
+}
+
+.login-form {
+  width: 1000px;
+  height: 500px;
+  margin-top: 60px;
+  background: #1a2226 !important;
+  border-radius: 10px !important;
+  position: absolute;
+
+}
+
+table {
+  position: relative;
+}
+
+table thead span {
+  color:#d3d3d3;
+}
+
+table tbody span {
+  color:#a4a4a4;
+}
+
+/*
+.card-title {
+  font-weight: 900;
+  padding-top: 20px;
+} */
+
+
+

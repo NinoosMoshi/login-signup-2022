@@ -30,15 +30,29 @@ export class EmployeeService {
   // }
 
 
-  getAllEmployess(): Observable<Employee[]> {
+  // http://localhost:8080/api/v1/employees/all?pageNumber={value}&pageSize={value}
+  getallEmployess(pageNumber:number, pageSize:number): Observable<Employee[]> {
 
-     return this.http.get<GetResponse>(`${this.baseUrl}/api/v1/employees`).pipe(
+     return this.http.get<GetResponse>(`${this.baseUrl}/api/v1/employees/all?pageNumber=${pageNumber}&pageSize=${pageSize}`).pipe(
        map(
          response =>{
             return response.employeeDTOS
          })
      );
   }
+
+
+  // http://localhost:8080/api/v1/employees/search?word={value}&pageNumber={value}&pageSize={value}
+  searchByKeyword(word:string, pageNumber:number, pageSize:number): Observable<Employee[]> {
+
+    return this.http.get<GetResponse>(`${this.baseUrl}/api/v1/employees/search?word=${word}&pageNumber=${pageNumber}&pageSize=${pageSize}`).pipe(
+      map(
+        response =>{
+           return response.employeeDTOS
+        })
+    );
+ }
+
 
 
 }

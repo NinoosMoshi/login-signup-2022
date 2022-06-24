@@ -20,12 +20,19 @@ const routes: Routes = [
   {path:'active', component:CodeActivationComponent,             // http://localhost:4200/active
     canActivate:[LoginLogoutService, AccountService]},
 
+
+
+
   {path:'reset', component:ResetPasswordComponent},             // http://localhost:4200/reset
 
 
 
   {path:'employess', component: EmployeeListComponent,          // http://localhost:4200/employess
                      canActivate:[RouteActiveService]},
+
+
+  {path:'employess/:key', component: EmployeeListComponent,     // http://localhost:4200/employess/{key}
+                      canActivate:[RouteActiveService]},
 
   {path:'', redirectTo:'/employess',pathMatch:'full'},          // http://localhost:4200/
 
