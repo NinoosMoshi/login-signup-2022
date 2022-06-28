@@ -55,9 +55,21 @@
     [(page)]="page"
     [pageSize]="employessInEachPage"
     [collectionSize]="totalEmployess"
+    [maxSize]="2"
+    [boundaryLinks]="true"
     (pageChange)="doing()"
   >
   </ngb-pagination>
+
+  <div class="page-size">
+    <span>Page Size</span>
+    <select (change)="pageSize($event)">
+      <option>2</option>
+      <option selected="true">3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
 </div>
 
   </div>

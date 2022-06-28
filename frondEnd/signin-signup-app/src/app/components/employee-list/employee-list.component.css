@@ -34,5 +34,15 @@ table tbody span {
   padding-top: 20px;
 } */
 
+.page-size {
+  margin-left: 50px;
+}
 
+.page-size span {
+  margin-right: 10px;
+}
+
+.page-size select {
+  padding: .375rem 0.75rem;
+}
 

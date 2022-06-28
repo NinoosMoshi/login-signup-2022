@@ -81,9 +81,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeResponse;
     }
 
+    @Override
+    public Long getNumbersOfEmployee() {
+        return employeeRepository.count();
+    }
+
+    @Override
+    public Long getEmployeeSizeByKeySearch(String key) {
+        return employeeRepository.getEmployeeLengthByKeySearch(key);
+    }
 
 
-        // convert DTO into Entity
+    // convert DTO into Entity
         private Employee mapToEntity(EmployeeDTO employeeDTO){
             Employee employee = mapper.map(employeeDTO, Employee.class);
             return employee;

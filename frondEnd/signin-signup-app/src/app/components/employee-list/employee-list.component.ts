@@ -15,7 +15,7 @@ export class EmployeeListComponent implements OnInit {
 
    page:number = 1;
    employessInEachPage:number = 3;
-   totalEmployess:number = 8;
+   totalEmployess:number = 0;
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute) { }
 
@@ -36,6 +36,9 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getEmployess(){
+    this.employeeService.getEmployessLength().subscribe(data =>{
+      this.totalEmployess = data;
+    })
     this.employeeService.getallEmployess(this.page - 1 ,this.employessInEachPage).subscribe(data =>{
       this.employess = data
     })
@@ -44,14 +47,22 @@ export class EmployeeListComponent implements OnInit {
 
   getOrdersByContainingKey() {
     let keyword = this.activatedRoute.snapshot.paramMap.get('key');
+    this.employeeService.getEmployessLengthByKeywordSearch(keyword).subscribe(data => {
+      this.totalEmployess = data
+    })
     this.employeeService.searchByKeyword(keyword,this.page - 1 ,this.employessInEachPage).subscribe(data =>{
       this.employess = data
     })
-
   }
 
 
   doing(){
+    this.finishEmployee();
+  }
+
+
+  pageSize(event:Event){
+    this.employessInEachPage = +(<HTMLInputElement>event.target).value
     this.finishEmployee();
   }
 

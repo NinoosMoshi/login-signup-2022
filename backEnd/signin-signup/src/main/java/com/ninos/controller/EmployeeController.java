@@ -46,4 +46,19 @@ public class EmployeeController {
     }
 
 
+    // http://localhost:8080/api/v1/employees/size
+    @GetMapping("/size")
+    public Long getEmployeeNum(){
+        return employeeService.getNumbersOfEmployee();
+    }
+
+
+
+    // http://localhost:8080/api/v1/employees/key-search?key={value}
+    @GetMapping("/key-search")
+    public Long getEmployeeLengthByKey(@RequestParam String key){
+        return employeeService.getEmployeeSizeByKeySearch(key);
+    }
+
+
 }

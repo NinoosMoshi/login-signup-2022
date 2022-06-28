@@ -54,6 +54,22 @@ export class EmployeeService {
  }
 
 
+ // http://localhost:8080/api/v1/employees/size
+ getEmployessLength():Observable<number>{
+   return this.http.get<number>(`${this.baseUrl}/api/v1/employees/size`).pipe(
+    map(response => response)
+   );
+ }
+
+
+// http://localhost:8080/api/v1/employees/key-search?key={value}
+ getEmployessLengthByKeywordSearch(key:string):Observable<number>{
+  return this.http.get<number>(`${this.baseUrl}/api/v1/employees/key-search?key=${key}`).pipe(
+    map(response => response)
+   );
+ }
+
+
 
 }
 
