@@ -1,6 +1,7 @@
+import { ViewEmployeeListComponent } from './../modal/view-employee-list/view-employee-list.component';
 import { AuthenticationService } from 'src/app/services/security/authentication.service';
 import { EmployeeService } from './../../services/employee.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Employee } from 'src/app/model/employee';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,6 +17,12 @@ export class EmployeeListComponent implements OnInit {
    page:number = 1;
    employessInEachPage:number = 3;
    totalEmployess:number = 0;
+
+   selectEmployee: Employee = new Employee();
+
+   @ViewChild(ViewEmployeeListComponent) viewEmployee:ViewEmployeeListComponent;
+
+
 
   constructor(private employeeService: EmployeeService, private activatedRoute: ActivatedRoute) { }
 
@@ -64,6 +71,13 @@ export class EmployeeListComponent implements OnInit {
   pageSize(event:Event){
     this.employessInEachPage = +(<HTMLInputElement>event.target).value
     this.finishEmployee();
+  }
+
+
+
+  viewEmployeeRequest(item: Employee){
+    this.selectEmployee = item;
+    this.viewEmployee?.showViewModal();
   }
 
 

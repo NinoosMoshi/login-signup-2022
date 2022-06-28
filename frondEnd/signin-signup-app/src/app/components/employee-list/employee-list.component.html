@@ -1,17 +1,15 @@
 
  <div class="container global-container">
 
-  <!-- <div class="alert alert-danger" *ngIf="errorMessage">
-      {{errorMessage}}
-  </div> -->
-
-<div class="card shadow login-form ">
+<!-- <div class="card shadow login-form "> -->
+<div class="login-form">
   <div>
     <button class="btn btn-primary" >New Employee</button>
   </div>
-  <div class="card-body">
+  <div class="card-body table-responsive">
 
-    <table class="table table-borderless table-responsive card-1 ">
+    <!-- <table class="table table-borderless table-responsive " > -->
+      <table class="table table-dark table-hover table-striped table-bordered">
       <thead>
           <tr class="border-bottom">
               <th> <span class="ml-2">Employee</span> </th>
@@ -22,7 +20,7 @@
           </tr>
       </thead>
       <tbody>
-          <tr class="border-bottom" *ngFor="let temp of employess">
+          <tr class="border-bottom" *ngFor="let temp of employess" (click)="viewEmployeeRequest(temp)">
             <td>
               <div class="p-2 d-flex flex-row align-items-center mb-2"> <img src="https://i.imgur.com/ZSkeqnd.jpg" width="40" class="rounded-circle">
                   <div class="d-flex flex-column ml-2"> <span class="d-block font-weight-bold">{{temp.firstName }} {{temp.lastName}}</span> <small class="text-muted">Jasmine Owner Reality group</small> </div>
@@ -41,7 +39,7 @@
 
               <td>
                 <div>
-                <button  class="btn btn-sm btn-info"><i class="fa fa-eye"></i>View</button>
+                <button (click)="viewEmployeeRequest(temp)" class="btn btn-sm btn-info"><i class="fa fa-eye"></i>View</button>
                 <button  class="btn btn-sm btn-warning" ><i class="fa fa-edit"></i>Edit</button>
                 <button  class="btn btn-sm btn-danger"><i class="fa fa-times" style="color:rgb(253, 253, 253)"></i>Delete</button>
                 </div>
@@ -82,6 +80,7 @@
 
 
 
+<app-view-employee-list [employee]="selectEmployee"></app-view-employee-list>
 
 
 

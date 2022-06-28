@@ -16,6 +16,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CodeActivationComponent } from './components/security/code-activation/code-activation.component';
 import { ResetPasswordComponent } from './components/security/reset-password/reset-password.component';
 import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { ViewEmployeeListComponent } from './components/modal/view-employee-list/view-employee-list.component';
 
 
 
@@ -28,6 +29,7 @@ import { GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig, So
     SearchComponent,
     CodeActivationComponent,
     ResetPasswordComponent,
+    ViewEmployeeListComponent,
   ],
   imports: [
     BrowserModule,
